@@ -55,7 +55,7 @@ void rentCycleBottomSheet(context) {
                                         const CollectRentCycle(),
                                         const RentCycleDaysForMonth(),
                                         const RentCyclePaymentRequired(),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 30,
                                         ),
                                         CustomButton(
