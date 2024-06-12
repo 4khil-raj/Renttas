@@ -24,6 +24,7 @@ dependencies:
   rate: ^0.0.2
   flutter_pannable_rating_bar: ^2.7.2+1
   url_launcher: ^6.3.0
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

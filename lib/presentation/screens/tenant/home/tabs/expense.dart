@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:renttas/presentation/screens/tenant/home/tabs/add_expense/expense.dart';
 import 'package:renttas/presentation/screens/tenant/home/tabs/widgets/floating_button.dart';
+import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class HomeExpenseTab extends StatelessWidget {
   const HomeExpenseTab({super.key});
@@ -9,7 +11,7 @@ class HomeExpenseTab extends StatelessWidget {
     return Scaffold(
       floatingActionButton: CustomTabsFloatingButton(
         text: 'Expense',
-        onTap: () {},
+        onTap: () => customNavPush(context, AddExpenseScreen()),
       ),
       body: Center(
         child: Text('Expense Not found!'),

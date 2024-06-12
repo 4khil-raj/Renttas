@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/bottomsheets/electricity/electricity.dart';
+import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/bottomsheets/gas_bill/gas_bill.dart';
+import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/bottomsheets/water_bill/water_bill.dart';
 import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/widgets/addbutton.dart';
 
 class AddBillOtherChargesScreen extends StatelessWidget {
@@ -44,7 +47,7 @@ class AddBillOtherChargesScreen extends StatelessWidget {
                       const Spacer(),
                       CustomAddButton(
                         containerWidth: 80,
-                        onTap: () {},
+                        onTap: () => electricityBillBottomSheet(context),
                         text: 'Add',
                       ),
                       const SizedBox(
@@ -65,7 +68,7 @@ class AddBillOtherChargesScreen extends StatelessWidget {
                       const Spacer(),
                       CustomAddButton(
                         containerWidth: 80,
-                        onTap: () {},
+                        onTap: () => waterBillBottomSheet(context),
                         text: 'Add',
                       ),
                       const SizedBox(
@@ -86,7 +89,7 @@ class AddBillOtherChargesScreen extends StatelessWidget {
                       const Spacer(),
                       CustomAddButton(
                         containerWidth: 80,
-                        onTap: () {},
+                        onTap: () => gasBillBottomSheet(context),
                         text: 'Add',
                       ),
                       const SizedBox(

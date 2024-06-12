@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/main.dart';
-import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/bottomsheets/previous_balance/widget/balance.dart';
+import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/bottomsheets/electricity/widget/charges.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
-String? previousBalance;
-void previoubillBottomSheet(context) {
-  final advanceAmountController = TextEditingController();
+void electricityBillBottomSheet(context) {
   showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -43,27 +41,15 @@ void previoubillBottomSheet(context) {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Add Previous Balance',
+                                          'How Elecctricity Is charged from tenants',
                                           style: GoogleFonts.urbanist(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20),
+                                              fontSize: 18),
                                         ),
                                         const SizedBox(
-                                          height: 8,
+                                          height: 16,
                                         ),
-                                        Text(
-                                          'Add rent dues or outstanding balance',
-                                          style: GoogleFonts.rubik(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        PreviousBalanceContainers(
-                                          advanceAmountController:
-                                              advanceAmountController,
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
+                                        const ElectricityBillChargesScreen(),
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,

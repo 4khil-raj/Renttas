@@ -4,8 +4,9 @@ import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/tenant/home/tabs/add_bill/bottomsheets/previous_balance/previous_balance.dart';
 
 class PreviousBalanceContainers extends StatefulWidget {
-  const PreviousBalanceContainers({super.key});
-
+  const PreviousBalanceContainers(
+      {required this.advanceAmountController, super.key});
+  final TextEditingController advanceAmountController;
   @override
   State<PreviousBalanceContainers> createState() =>
       _PreviousBalanceContainersState();
@@ -126,6 +127,26 @@ class _PreviousBalanceContainersState extends State<PreviousBalanceContainers> {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Card(
+          elevation: 0,
+          child: TextField(
+            keyboardType: TextInputType.number,
+            controller: widget.advanceAmountController,
+            decoration: InputDecoration(
+                hintText: '  Advance Amount*',
+                border: InputBorder.none,
+                prefixIcon: Icon(
+                  Icons.money,
+                  color: contsGreen,
+                )),
+          ),
+        ),
+        const SizedBox(
+          height: 21,
         ),
       ],
     );
