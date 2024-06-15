@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/presentation/screens/landlord/home/profile/rate_app.dart/rate.dart';
+import 'package:renttas/presentation/screens/landlord/home/profile/widgets/other.dart';
 import 'package:renttas/presentation/widgets/alerts/alerts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final Uri url = Uri.parse('https://renttas.com/term/conditions');
-
-class TenantProfileOther extends StatelessWidget {
-  const TenantProfileOther({super.key});
+class OthersProfileTenant extends StatelessWidget {
+  const OthersProfileTenant({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,9 @@ class TenantProfileOther extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                onTap: () => rateApp(context),
-                leading: const Icon(Icons.star),
+                leading: const Icon(Icons.message),
                 title: Text(
-                  'Rate this app',
+                  'Live Chat',
                   style: GoogleFonts.rubik(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),
@@ -39,6 +37,15 @@ class TenantProfileOther extends StatelessWidget {
                 leading: const Icon(Icons.email),
                 title: Text(
                   'Share App',
+                  style: GoogleFonts.rubik(
+                      fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+              ),
+              ListTile(
+                onTap: () => rateApp(context),
+                leading: const Icon(Icons.star),
+                title: Text(
+                  'About US',
                   style: GoogleFonts.rubik(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),

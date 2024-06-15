@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LatestBillTenant extends StatelessWidget {
   const LatestBillTenant({super.key});
@@ -106,6 +107,38 @@ class LatestBillTenant extends StatelessWidget {
                           ),
                         ),
                       ),
+                      InkWell(
+                        onTap: () => openWhatsAppChat('+918943514279'),
+                        child: Expanded(
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black45)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // Icon(
+                                //   Icons.wh,
+                                //   size: 30,
+                                //   color: contsGreen,
+                                // ),
+                                Container(
+                                  width: 40,
+                                  child: Image.asset(
+                                    'assets/images/whatsapp icon.png',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+
+                                Text('WhatsApp',
+                                    style: GoogleFonts.urbanist(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w700))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                       Expanded(
                         child: Container(
                           height: 50,
@@ -123,7 +156,7 @@ class LatestBillTenant extends StatelessWidget {
                                 color: contsGreen,
                               ),
                               const SizedBox(
-                                width: 8,
+                                width: 6,
                               ),
                               Text('Download',
                                   style: GoogleFonts.urbanist(
@@ -143,4 +176,16 @@ class LatestBillTenant extends StatelessWidget {
       ),
     );
   }
+
+  void openWhatsAppChat(String phoneNumber) async {
+    final whatsappUrl = "whatsapp://send?phone=$phoneNumber&text=Hello!";
+    if (await canLaunch(whatsappUrl)) {
+      await launch(whatsappUrl);
+    } else {
+      throw 'Could not launch $whatsappUrl';
+    }
+  }
 }
+ // const SizedBox(
+                              //   width: 8,
+                              // ),

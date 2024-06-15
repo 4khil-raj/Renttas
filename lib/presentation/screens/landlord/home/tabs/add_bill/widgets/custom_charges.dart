@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/custom_charges/charges.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/addbutton.dart';
 
 class AddBillCustomChargesScreen extends StatelessWidget {
@@ -39,7 +40,7 @@ class AddBillCustomChargesScreen extends StatelessWidget {
                       const Spacer(),
                       CustomAddButton(
                         containerWidth: 80,
-                        onTap: () {},
+                        onTap: () => customChargesBottomSheet(context),
                         text: 'Add',
                       ),
                       const SizedBox(

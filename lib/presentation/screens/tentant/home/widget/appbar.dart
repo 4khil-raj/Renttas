@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/main.dart';
+import 'package:renttas/presentation/screens/tentant/home/profile/profile.dart';
+import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class TenantappBar extends StatelessWidget {
   const TenantappBar({super.key});
@@ -13,9 +15,13 @@ class TenantappBar extends StatelessWidget {
         padding: const EdgeInsets.all(5.0),
         child: Row(
           children: [
-            const CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Text('UN'),
+            InkWell(
+              onTap: () =>
+                  customNavPush(context, const TenantHomeProfileScreen()),
+              child: const CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text('UN'),
+              ),
             ),
             const SizedBox(
               width: 8,
