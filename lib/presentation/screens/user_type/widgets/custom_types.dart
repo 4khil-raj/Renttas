@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renttas/presentation/screens/tenant/home/home.dart';
+import 'package:renttas/presentation/screens/landlord/home/home.dart';
+import 'package:renttas/presentation/screens/tentant/home/home.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class CustomTypesContainer extends StatelessWidget {
@@ -10,7 +11,7 @@ class CustomTypesContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       InkWell(
-        onTap: () {},
+        onTap: () => customNavRemoveuntil(context, const LandlordHomeScreen()),
         child: Container(
             height: 150,
             decoration: BoxDecoration(
@@ -50,7 +51,8 @@ class CustomTypesContainer extends StatelessWidget {
         height: 35,
       ),
       InkWell(
-          onTap: () => customNavRemoveuntil(context, const TenantHomeScreen()),
+          onTap: () =>
+              customNavRemoveuntil(context, const TenantWelcomeHomeScreen()),
           child: Container(
               height: 150,
               decoration: BoxDecoration(
