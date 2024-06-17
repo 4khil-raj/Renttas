@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:renttas/presentation/screens/tentant/home/about/about.dart';
-import 'package:renttas/presentation/screens/tentant/home/about/widget/property_details.dart';
 import 'package:renttas/presentation/screens/tentant/home/bills/bills.dart';
 import 'package:renttas/presentation/screens/tentant/home/documents/documents.dart';
 import 'package:renttas/presentation/screens/tentant/home/widget/appbar.dart';

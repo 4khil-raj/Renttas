@@ -81,7 +81,7 @@ class SignInFields extends StatelessWidget {
               name: 'Sign In',
               onTap: () {},
               radius: 30,
-              textclr: Colors.black,
+              textclr: Colors.white,
               textsize: 20,
             ),
           )

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renttas/presentation/screens/landlord/home/home.dart';
-import 'package:renttas/presentation/screens/tentant/home/home.dart';
+import 'package:renttas/presentation/screens/auth/sign_up/sign_up.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class CustomTypesContainer extends StatelessWidget {
@@ -11,7 +10,12 @@ class CustomTypesContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       InkWell(
-        onTap: () => customNavRemoveuntil(context, const LandlordHomeScreen()),
+        // const LandlordHomeScreen() landloard screen class
+        onTap: () => customNavRemoveuntil(
+            context,
+            SignUpScreen(
+              role: '2',
+            )),
         child: Container(
             height: 150,
             decoration: BoxDecoration(
@@ -52,7 +56,13 @@ class CustomTypesContainer extends StatelessWidget {
       ),
       InkWell(
           onTap: () =>
-              customNavRemoveuntil(context, const TenantWelcomeHomeScreen()),
+//TenantWelcomeHomeScreen() for tenant
+
+              customNavRemoveuntil(
+                  context,
+                  SignUpScreen(
+                    role: '1',
+                  )),
           child: Container(
               height: 150,
               decoration: BoxDecoration(

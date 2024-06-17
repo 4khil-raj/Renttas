@@ -1,15 +1,17 @@
 // ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:renttas/presentation/screens/user_type/type.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renttas/application/auth/bloc/auth_bloc.dart';
+import 'package:renttas/domain/models/signup_models/models.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/form_field/form_field.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class SignUpFields extends StatefulWidget {
-  const SignUpFields({super.key});
-
+  const SignUpFields({required this.req, super.key, required this.role});
+  final String role;
+  final bool req;
   @override
   State<SignUpFields> createState() => _SignUpFieldsState();
 }
@@ -131,22 +133,39 @@ class _SignUpFieldsState extends State<SignUpFields> {
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0, left: 10, right: 10),
-            child: CustomButton(
-              isNetwork: false,
-              isRow: false,
-              borderclr: Color.fromARGB(255, 73, 148, 74),
-              color: Color.fromARGB(255, 82, 144, 83),
-              fontweight: FontWeight.w500,
-              height: 60,
-              name: 'Create Your Account',
-              onTap: () => customNavPush(context, UserTypeScreen()),
-              radius: 30,
-              textclr: Colors.black,
-              textsize: 20,
-            ),
-          )
+          widget.req
+              ? CircularProgressIndicator()
+              : Padding(
+                  padding:
+                      const EdgeInsets.only(top: 15.0, left: 10, right: 10),
+                  child: CustomButton(
+                    isNetwork: false,
+                    isRow: false,
+                    borderclr: Color.fromARGB(255, 73, 148, 74),
+                    color: Color.fromARGB(255, 82, 144, 83),
+                    fontweight: FontWeight.w500,
+                    height: 60,
+                    name: 'Create Your Account',
+                    // onTap: () => customNavPush(context, UserTypeScreen()),
+
+                    onTap: () {
+                      SignUpModels models = SignUpModels(
+                          role: widget.role,
+                          name: (firstNameController.text) +
+                              (lastNameController.text),
+                          mobileNo: phonecontroller,
+                          currency: "INR",
+                          email: emailController.text,
+                          address: 'address',
+                          password: confirmPasswordController.text);
+                      BlocProvider.of<AuthBloc>(context)
+                          .add(SignUpRequestEvent(user: models));
+                    },
+                    radius: 30,
+                    textclr: Colors.white,
+                    textsize: 20,
+                  ),
+                )
         ],
       ),
     );

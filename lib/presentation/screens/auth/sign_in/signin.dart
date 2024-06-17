@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renttas/presentation/screens/auth/sign_in/widgets/fields.dart';
 import 'package:renttas/presentation/screens/auth/sign_up/sign_up.dart';
+import 'package:renttas/presentation/screens/user_type/type.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
@@ -43,7 +44,7 @@ class SignInScreen extends StatelessWidget {
                   Text('Don\'t Have An Account?'),
                   TextButton(
                     onPressed: () =>
-                        customNavRemoveuntil(context, SignUpScreen()),
+                        customNavRemoveuntil(context, UserTypeScreen()),
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
