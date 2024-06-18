@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:renttas/application/auth/bloc/auth_bloc.dart';
+import 'package:renttas/application/forgetpassword/forgetpassword_bloc.dart';
+import 'package:renttas/application/signup_bloc/auth_bloc.dart';
 import 'package:renttas/presentation/screens/splash/splash.dart';
 
 void main() {
@@ -16,7 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => AuthBloc())],
+      providers: [
+        BlocProvider(create: (context) => AuthBloc()),
+        BlocProvider(
+          create: (context) => ForgetpasswordBloc(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Renttas',

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:renttas/application/auth/bloc/auth_bloc.dart';
+import 'package:renttas/application/signup_bloc/auth_bloc.dart';
 import 'package:renttas/domain/models/signup_models/models.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/form_field/form_field.dart';

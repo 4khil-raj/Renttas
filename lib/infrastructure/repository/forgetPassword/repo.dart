@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:renttas/core/api/apis.dart';
 
@@ -14,14 +13,14 @@ class ForgetPasswordRepo {
         },
         body: jsonEncode(requestData),
       );
-      if (response.statusCode == 200) {
-        final responseBody = jsonDecode(response.body);
-        return responseBody['otp'];
+      final responseBody = jsonDecode(response.body);
+      if (responseBody['statuscode'] == 200) {
+        return responseBody['otp'].toString();
       } else {
         return 'email not found';
       }
     } catch (e) {
-      return '';
+      return 'email not found';
     }
   }
 }

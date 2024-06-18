@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renttas/application/auth/bloc/auth_bloc.dart';
+import 'package:renttas/application/signup_bloc/auth_bloc.dart';
 import 'package:renttas/presentation/screens/auth/sign_in/signin.dart';
 import 'package:renttas/presentation/screens/auth/sign_up/widgets/fields.dart';
 import 'package:renttas/presentation/widgets/alerts/alerts.dart';

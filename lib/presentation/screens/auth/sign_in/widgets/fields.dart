@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/presentation/screens/auth/forget_password/forget_password.dart';
 import 'package:renttas/presentation/screens/user_type/type.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/form_field/form_field.dart';
@@ -59,7 +60,7 @@ class SignInFields extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () => customNavPush(context, ForgetPasswordScreen()),
               child: const Text(
                 'Forget Your Password?',
                 style: TextStyle(
