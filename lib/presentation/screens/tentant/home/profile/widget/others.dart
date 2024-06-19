@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/presentation/screens/auth/sign_in/signin.dart';
 import 'package:renttas/presentation/screens/landlord/home/profile/rate_app.dart/rate.dart';
 import 'package:renttas/presentation/screens/landlord/home/profile/widgets/other.dart';
 import 'package:renttas/presentation/widgets/alerts/alerts.dart';
+import 'package:renttas/presentation/widgets/navigators/navs.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OthersProfileTenant extends StatelessWidget {
@@ -69,8 +71,11 @@ class OthersProfileTenant extends StatelessWidget {
                 ),
               ),
               ListTile(
-                onTap: () => alertsWithButtons(context,
-                    'Are you sure want to logout?', () {}, 'Confirmation'),
+                onTap: () => alertsWithButtons(
+                    context, 'Are you sure want to logout?', () {
+                  clearLoginInfo();
+                  customNavRemoveuntil(context, SignInScreen());
+                }, 'Confirmation'),
                 leading: const Icon(
                   Icons.logout,
                   color: Colors.red,

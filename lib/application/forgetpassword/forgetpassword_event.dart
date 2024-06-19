@@ -12,3 +12,8 @@ final class ForgetOtpChecking extends ForgetpasswordEvent {
   final String otp;
   ForgetOtpChecking({required this.otp});
 }
+
+final class ResetPasswordRequest extends ForgetpasswordEvent {
+  final NewPasswordModel model;
+  ResetPasswordRequest({required this.model});
+}

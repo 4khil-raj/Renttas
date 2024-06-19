@@ -12,82 +12,79 @@ class AddNewProperty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text(
-          'Add Property',
-          style: GoogleFonts.poppins(
-              fontSize: 24, color: Colors.white, fontWeight: FontWeight.w600),
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: Text(
+            'Add Property',
+            style: GoogleFonts.poppins(
+                fontSize: 24, color: Colors.white, fontWeight: FontWeight.w600),
+          ),
+          centerTitle: true,
+          backgroundColor: contsGreen,
         ),
-        centerTitle: true,
-        backgroundColor: contsGreen,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(11.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 30,
-            ),
-            AddExpenseFields(
-              keyboardType: TextInputType.number,
-              controller: propertyNameController,
-              hitText: 'Property Name',
-              icon: Icon(
-                Icons.location_city_rounded,
-                color: contsGreen,
+        body: Padding(
+            padding: const EdgeInsets.all(11.0),
+            child: SingleChildScrollView(
+                child: Column(children: [
+              const SizedBox(
+                height: 30,
               ),
-              name: 'Property Name*',
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            AddExpenseFields(
-              keyboardType: TextInputType.number,
-              controller: subPropertyNameController,
-              hitText: 'Sub Property Name',
-              icon: Icon(
-                Icons.location_city,
-                color: contsGreen,
+              AddExpenseFields(
+                keyboardType: TextInputType.number,
+                controller: propertyNameController,
+                hitText: 'Property Name',
+                icon: Icon(
+                  Icons.location_city_rounded,
+                  color: contsGreen,
+                ),
+                name: 'Property Name*',
               ),
-              name: 'Sub Property Name*',
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            AddExpenseFields(
-              keyboardType: TextInputType.number,
-              controller: locationController,
-              hitText: 'Location',
-              icon: Icon(
-                Icons.location_on,
-                color: contsGreen,
+              const SizedBox(
+                height: 8,
               ),
-              name: 'Location*',
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomButton(
-                isNetwork: false,
-                isRow: false,
-                onTap: () {},
-                textclr: Colors.white,
-                borderclr: contsGreen,
-                color: contsGreen,
-                fontweight: FontWeight.w500,
-                name: 'Submit',
-                height: 60,
-                radius: 10,
-                textsize: 16,
-                width: double.infinity,
+              AddExpenseFields(
+                keyboardType: TextInputType.number,
+                controller: subPropertyNameController,
+                hitText: 'Sub Property Name',
+                icon: Icon(
+                  Icons.location_city,
+                  color: contsGreen,
+                ),
+                name: 'Sub Property Name*',
               ),
-            )
-          ],
-        ),
-      ),
-    );
+              const SizedBox(
+                height: 8,
+              ),
+              AddExpenseFields(
+                keyboardType: TextInputType.number,
+                controller: locationController,
+                hitText: 'Location',
+                icon: Icon(
+                  Icons.location_on,
+                  color: contsGreen,
+                ),
+                name: 'Location*',
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomButton(
+                  isNetwork: false,
+                  isRow: false,
+                  onTap: () {},
+                  textclr: Colors.white,
+                  borderclr: contsGreen,
+                  color: contsGreen,
+                  fontweight: FontWeight.w500,
+                  name: 'Submit',
+                  height: 60,
+                  radius: 10,
+                  textsize: 16,
+                  width: double.infinity,
+                ),
+              )
+            ]))));
   }
 }

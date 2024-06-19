@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/application/login_bloc/login_bloc.dart';
+import 'package:renttas/domain/models/signin_models/model.dart';
+import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/auth/forget_password/forget_password.dart';
-import 'package:renttas/presentation/screens/user_type/type.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/form_field/form_field.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
@@ -13,9 +15,11 @@ class SignInFields extends StatelessWidget {
   SignInFields(
       {required this.emailController,
       required this.passwordController,
+      required this.req,
       super.key});
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool req;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,7 +57,7 @@ class SignInFields extends StatelessWidget {
               ),
               obscureText: false,
               hintText: '*********',
-              controller: emailController,
+              controller: passwordController,
               labelText: 'Password',
             ),
           ),
@@ -70,24 +74,34 @@ class SignInFields extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(11.0),
-            child: CustomButton(
-              isNetwork: false,
-              isRow: false,
-              borderclr: Color.fromARGB(255, 76, 135, 77),
-              color: Color.fromARGB(255, 82, 144, 83),
-              fontweight: FontWeight.w500,
-              height: 60,
-              name: 'Sign In',
-              onTap: () {},
-              radius: 30,
-              textclr: Colors.white,
-              textsize: 20,
-            ),
-          )
+          req
+              ? CircularProgressIndicator(
+                  color: contsGreen,
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(11.0),
+                  child: CustomButton(
+                    isNetwork: false,
+                    isRow: false,
+                    borderclr: Color.fromARGB(255, 76, 135, 77),
+                    color: Color.fromARGB(255, 82, 144, 83),
+                    fontweight: FontWeight.w500,
+                    height: 60,
+                    name: 'Sign In',
+                    onTap: () => loginReq(context),
+                    radius: 30,
+                    textclr: Colors.white,
+                    textsize: 20,
+                  ),
+                )
         ],
       ),
     );
+  }
+
+  void loginReq(BuildContext context) {
+    LoginModel model = LoginModel(
+        email: emailController.text, password: passwordController.text);
+    BlocProvider.of<LoginBloc>(context).add(LoginRequestEvent(model: model));
   }
 }

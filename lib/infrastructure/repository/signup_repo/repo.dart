@@ -4,7 +4,8 @@ import 'package:renttas/core/api/apis.dart';
 import 'package:renttas/domain/models/signup_models/models.dart';
 
 class SignUpRepo {
-  Future<String> signupReq(SignUpModels user) async {
+  Future signupReq(SignUpModels user) async {
+    print(" this is the role now :${user.role}");
     Map<String, dynamic> requestData = {
       "name": user.name,
       "mobileNo": user.mobileNo,
@@ -22,13 +23,13 @@ class SignUpRepo {
         },
         body: jsonEncode(requestData),
       );
-      if (response.statusCode == 200) {
-        final responseBody = jsonDecode(response.body);
-
+      final responseBody = jsonDecode(response.body);
+      // print(responseBody);
+      if (responseBody['statuscode'] == 200) {
         if (responseBody['success'] == false) {
           return responseBody['msg'];
         } else {
-          return 'Success';
+          return responseBody;
         }
       } else {
         return ' Registration Faild';

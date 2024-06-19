@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unused_local_variable
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:renttas/domain/models/signup_models/models.dart';
@@ -14,11 +16,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<SignUpRequestEvent>((event, emit) async {
       emit(SignUpEventCalled());
-      final reqbody = await SignUpRepo().signupReq(event.user);
-      if (reqbody == 'Success') {
-        emit(SignupSuccesState());
-      } else {
-        emit(AuthErrorState(message: reqbody));
+      try {
+        final reqbody = await SignUpRepo().signupReq(event.user);
+        print(reqbody);
+        if (reqbody != 'You are already registered') {
+          if (reqbody["data"]["role"] == '2') {
+            emit(SignupSuccesState(user: false));
+          } else {
+            emit(SignupSuccesState(user: true));
+          }
+        } else {
+          emit(AuthErrorState(message: reqbody));
+        }
+      } catch (e) {
+        emit(AuthErrorState(message: 'You are already registered.'));
       }
     });
   }

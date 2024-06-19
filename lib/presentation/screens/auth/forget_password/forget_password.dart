@@ -7,7 +7,9 @@ import 'package:renttas/presentation/screens/auth/forget_password/widget/change_
 import 'package:renttas/presentation/screens/auth/forget_password/widget/email_input.dart';
 import 'package:renttas/presentation/screens/auth/forget_password/widget/otp_screen.dart';
 import 'package:renttas/presentation/screens/auth/forget_password/widget/top.dart';
+import 'package:renttas/presentation/screens/auth/sign_in/signin.dart';
 import 'package:renttas/presentation/widgets/alerts/alerts.dart';
+import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});
@@ -38,6 +40,14 @@ class ForgetPasswordScreen extends StatelessWidget {
             } else if (state is OtpVerifiedState) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 changePassword(context);
+                BlocProvider.of<ForgetpasswordBloc>(context)
+                    .add(ForgetpasswordEvent());
+              });
+            } else if (state is PasswordResentSuccessState) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                customNavRemoveuntil(context, SignInScreen());
+                BlocProvider.of<ForgetpasswordBloc>(context)
+                    .add(ForgetpasswordEvent());
               });
             }
             return Column(

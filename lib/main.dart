@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renttas/application/forgetpassword/forgetpassword_bloc.dart';
+import 'package:renttas/application/login_bloc/login_bloc.dart';
 import 'package:renttas/application/signup_bloc/auth_bloc.dart';
 import 'package:renttas/presentation/screens/splash/splash.dart';
 
+const loginTocken = '';
 void main() {
   runApp(const MyApp());
 }
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(
           create: (context) => ForgetpasswordBloc(),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(),
         )
       ],
       child: MaterialApp(

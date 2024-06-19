@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/application/forgetpassword/forgetpassword_bloc.dart';
+import 'package:renttas/domain/models/newpassword/model.dart';
 import 'package:renttas/main.dart';
+import 'package:renttas/presentation/widgets/alerts/alerts.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/form_field/form_field.dart';
 
@@ -37,7 +39,7 @@ void changePassword(context) {
                       return Container(
                           decoration: BoxDecoration(
                             color: Colors.green[50],
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15),
                             ),
@@ -160,7 +162,29 @@ void changePassword(context) {
                                                 textclr: Colors.white,
                                                 name: 'Reset Password',
                                                 onTap: () {
-                                                  Navigator.pop(context);
+                                                  if (resetPasswordController1
+                                                          .text ==
+                                                      resetPasswordController2
+                                                          .text) {
+                                                    NewPasswordModel model =
+                                                        NewPasswordModel(
+                                                            newpassword:
+                                                                resetPasswordController1
+                                                                    .text,
+                                                            conformPassword:
+                                                                resetPasswordController2
+                                                                    .text);
+
+                                                    BlocProvider.of<
+                                                                ForgetpasswordBloc>(
+                                                            context)
+                                                        .add(
+                                                            ResetPasswordRequest(
+                                                                model: model));
+                                                  } else {
+                                                    alerts(
+                                                        context, 'Worng input');
+                                                  }
                                                 },
                                                 textsize: 18,
                                                 width: MediaQuery.of(context)

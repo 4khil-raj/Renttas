@@ -15,3 +15,5 @@ class OtpSendSuccessState extends ForgetpasswordState {}
 class ForgetRequestedState extends ForgetpasswordState {}
 
 class OtpVerifiedState extends ForgetpasswordState {}
+
+class PasswordResentSuccessState extends ForgetpasswordState {}
