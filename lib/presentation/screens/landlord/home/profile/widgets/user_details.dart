@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/domain/models/user_model/model.dart';
 
 class TenantProfileUserDetails extends StatelessWidget {
   const TenantProfileUserDetails({super.key});
@@ -24,7 +25,7 @@ class TenantProfileUserDetails extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.person),
                 title: Text(
-                  'username',
+                  userModel?.name ?? 'username',
                   style: GoogleFonts.rubik(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),
@@ -32,7 +33,7 @@ class TenantProfileUserDetails extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.email),
                 title: Text(
-                  'username@gmail.com',
+                  userModel?.email ?? 'username@gmail.com',
                   style: GoogleFonts.rubik(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),
@@ -40,7 +41,7 @@ class TenantProfileUserDetails extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.phone),
                 title: Text(
-                  '+9189435142**',
+                  userModel?.mobileNo ?? '+91*********',
                   style: GoogleFonts.rubik(
                       fontSize: 14, fontWeight: FontWeight.w500),
                 ),

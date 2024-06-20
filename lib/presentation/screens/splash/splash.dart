@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/home.dart';
 import 'package:renttas/presentation/screens/onboarding/onboarding.dart';
@@ -11,6 +12,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getUserModel();
     Future.delayed(const Duration(seconds: 2), () {
       checkUserLogin(context);
     });

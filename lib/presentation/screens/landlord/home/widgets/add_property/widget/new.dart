@@ -9,6 +9,7 @@ class AddNewProperty extends StatelessWidget {
   final propertyNameController = TextEditingController();
   final subPropertyNameController = TextEditingController();
   final locationController = TextEditingController();
+  final pincodeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +65,19 @@ class AddNewProperty extends StatelessWidget {
                   color: contsGreen,
                 ),
                 name: 'Location*',
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              AddExpenseFields(
+                keyboardType: TextInputType.number,
+                controller: pincodeController,
+                hitText: 'Pincode',
+                icon: Icon(
+                  Icons.location_on,
+                  color: contsGreen,
+                ),
+                name: 'Pincode*',
               ),
               const SizedBox(
                 height: 30,

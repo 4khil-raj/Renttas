@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/presentation/screens/landlord/home/addroom.dart';
 import 'package:renttas/presentation/screens/landlord/home/profile/profile.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/add_property.dart';
@@ -9,9 +10,22 @@ import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 class TenantHomeScreenCustomAppBar extends StatelessWidget {
   const TenantHomeScreenCustomAppBar({super.key});
+  String _getInitials(String name) {
+    List<String> parts = name.split(' ');
+    if (parts.length >= 2) {
+      String firstName = parts[0];
+      String lastName = parts[parts.length - 1];
+      return '${firstName[0]}${lastName[0]}'.toUpperCase();
+    } else if (parts.length == 1) {
+      return '${parts[0][0]}'.toUpperCase();
+    } else {
+      return '';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    String initials = userModel != null ? _getInitials(userModel!.name) : '';
     return Container(
       height: 150,
       color: const Color.fromARGB(255, 82, 144, 83),
@@ -25,9 +39,9 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
                 child: InkWell(
                   onTap: () =>
                       customNavPush(context, const TenantProfileScreen()),
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    child: Text('A'),
+                    child: Text(initials),
                   ),
                 ),
               ),
