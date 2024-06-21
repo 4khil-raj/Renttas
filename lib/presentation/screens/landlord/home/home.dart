@@ -17,7 +17,7 @@ class LandlordHomeScreen extends StatelessWidget {
         body: DefaultTabController(
             initialIndex: 0,
             length: 5,
-            child: Column(children: [
+            child: Column(children: const [
               TenantHomeScreenCustomAppBar(),
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -28,7 +28,7 @@ class LandlordHomeScreen extends StatelessWidget {
                           labelColor: Color.fromARGB(255, 82, 144, 83),
                           unselectedLabelColor: Color.fromARGB(255, 0, 0, 0),
                           isScrollable: true,
-                          tabs: const [
+                          tabs: [
                             Text('Bills', style: TextStyle(fontSize: 18)),
                             Text('Tenants', style: TextStyle(fontSize: 18)),
                             Text('Expense', style: TextStyle(fontSize: 18)),
@@ -36,7 +36,7 @@ class LandlordHomeScreen extends StatelessWidget {
                             Text('About', style: TextStyle(fontSize: 18)),
                           ]))),
               Expanded(
-                  child: TabBarView(children: const [
+                  child: TabBarView(children: [
                 HomeBillTab(),
                 HomeTenantsTab(),
                 HomeExpenseTab(),

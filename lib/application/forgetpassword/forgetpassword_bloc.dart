@@ -1,11 +1,9 @@
-// ignore_for_file: unused_local_variable
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:renttas/domain/models/newpassword/model.dart';
 import 'package:renttas/infrastructure/repository/forgetPassword/repo.dart';
 import 'package:renttas/infrastructure/repository/newpassword/repo.dart';
-
 part 'forgetpassword_event.dart';
 part 'forgetpassword_state.dart';
 
@@ -41,7 +39,6 @@ class ForgetpasswordBloc
         emit(ForgetPasswordErrorState(msg: 'Enterd wrong OTP'));
       }
     });
-
     on<ResetPasswordRequest>((event, emit) async {
       try {
         final response =

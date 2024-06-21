@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/main.dart';
+import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/newproperty_button.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/new.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/prepertes.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
+bool propertyloading = false;
 void addPropertyBottomSheet(context) {
   showModalBottomSheet(
       context: context,
@@ -25,9 +27,9 @@ void addPropertyBottomSheet(context) {
                     curve: Curves.easeOut,
                     child: Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          borderRadius: const BorderRadius.only(
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15),
                           ),
@@ -52,21 +54,7 @@ void addPropertyBottomSheet(context) {
                                           height: 16,
                                         ),
                                         const AppBarAddPropertys(),
-                                        CustomButton(
-                                          isNetwork: false,
-                                          isRow: false,
-                                          onTap: () => customNavPush(
-                                              context, AddNewProperty()),
-                                          textclr: Colors.white,
-                                          borderclr: contsGreen,
-                                          color: contsGreen,
-                                          fontweight: FontWeight.w500,
-                                          name: 'New Property',
-                                          height: 50,
-                                          radius: 10,
-                                          textsize: 16,
-                                          width: double.infinity,
-                                        )
+                                        const NewPropertyButton()
                                       ]),
                                 )))));
               });

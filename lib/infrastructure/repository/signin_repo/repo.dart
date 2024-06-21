@@ -23,7 +23,6 @@ class LoginRepo {
         return 'Invalid inputs';
       }
     } catch (e) {
-      print('poi');
       return 'Invalid inputs';
     }
   }

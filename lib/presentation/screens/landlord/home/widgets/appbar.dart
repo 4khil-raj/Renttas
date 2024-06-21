@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
+import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/presentation/screens/landlord/home/addroom.dart';
 import 'package:renttas/presentation/screens/landlord/home/profile/profile.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/add_property.dart';
+import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/property_builder.dart';
 import 'package:renttas/presentation/screens/landlord/premium/premium.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
+
+dynamic selectedPropertyId;
 
 class TenantHomeScreenCustomAppBar extends StatelessWidget {
   const TenantHomeScreenCustomAppBar({super.key});
@@ -46,17 +52,34 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () => addPropertyBottomSheet(context),
+                onTap: () {
+                  BlocProvider.of<FetchpropertyBloc>(context)
+                      .add(FetchPropertyreqEvent(uid: userModel!.uid));
+                  addPropertyBottomSheet(context);
+                },
                 child: Row(
                   children: [
                     ConstrainedBox(
                         constraints:
                             const BoxConstraints(maxWidth: 120, minWidth: 80),
-                        child: Text('Property',
-                            style: GoogleFonts.urbanist(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: Colors.white))),
+                        child: BlocBuilder<PropertyselecterBloc,
+                            PropertyselecterState>(
+                          builder: (context, state) {
+                            if (state is PropertySelectedState) {
+                              selectedPropertyId = state.id;
+                              return Text(state.selectedProperty,
+                                  style: GoogleFonts.urbanist(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      color: Colors.white));
+                            }
+                            return Text('select Property',
+                                style: GoogleFonts.urbanist(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Colors.white));
+                          },
+                        )),
                     const Icon(
                       Icons.arrow_drop_down,
                       size: 27,
