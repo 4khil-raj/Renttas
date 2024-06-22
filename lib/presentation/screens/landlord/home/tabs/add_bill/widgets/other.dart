@@ -2,14 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/electricity/electricity.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/gas_bill/gas_bill.dart';
+import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/gas_bill/widgets/charges.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/water_bill/water_bill.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/addbutton.dart';
 
-class AddBillOtherChargesScreen extends StatelessWidget {
+class AddBillOtherChargesScreen extends StatefulWidget {
   const AddBillOtherChargesScreen({super.key});
 
   @override
+  State<AddBillOtherChargesScreen> createState() =>
+      _AddBillOtherChargesScreenState();
+}
+
+class _AddBillOtherChargesScreenState extends State<AddBillOtherChargesScreen> {
+  @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(microseconds: 1), () {
+      setState(() {});
+    });
     return Padding(
       padding:
           const EdgeInsets.only(top: 13.0, left: 13, right: 13, bottom: 13),
@@ -45,11 +55,15 @@ class AddBillOtherChargesScreen extends StatelessWidget {
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      CustomAddButton(
-                        containerWidth: 80,
-                        onTap: () => electricityBillBottomSheet(context),
-                        text: 'Add',
-                      ),
+                      electrycityBill.isEmpty
+                          ? CustomAddButton(
+                              containerWidth: 80,
+                              onTap: () => electricityBillBottomSheet(context),
+                              text: 'Add',
+                            )
+                          : InkWell(
+                              onTap: () => electricityBillBottomSheet(context),
+                              child: Text("Added")),
                       const SizedBox(
                         width: 5,
                       )
@@ -66,11 +80,15 @@ class AddBillOtherChargesScreen extends StatelessWidget {
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      CustomAddButton(
-                        containerWidth: 80,
-                        onTap: () => waterBillBottomSheet(context),
-                        text: 'Add',
-                      ),
+                      waterBill.isEmpty
+                          ? CustomAddButton(
+                              containerWidth: 80,
+                              onTap: () => waterBillBottomSheet(context),
+                              text: 'Add',
+                            )
+                          : InkWell(
+                              onTap: () => waterBillBottomSheet(context),
+                              child: Text("Added")),
                       const SizedBox(
                         width: 5,
                       )
@@ -87,11 +105,15 @@ class AddBillOtherChargesScreen extends StatelessWidget {
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      CustomAddButton(
-                        containerWidth: 80,
-                        onTap: () => gasBillBottomSheet(context),
-                        text: 'Add',
-                      ),
+                      gasBill.isEmpty
+                          ? CustomAddButton(
+                              containerWidth: 80,
+                              onTap: () => gasBillBottomSheet(context),
+                              text: 'Add',
+                            )
+                          : InkWell(
+                              onTap: () => gasBillBottomSheet(context),
+                              child: Text("Added")),
                       const SizedBox(
                         width: 5,
                       )

@@ -13,3 +13,8 @@ final class FetchPropertyEvent extends AddpropertyEvent {
   final String uid;
   FetchPropertyEvent({required this.uid});
 }
+
+final class UpdatePropertyBlocEvent extends AddpropertyEvent {
+  final UpdatePropertyModel model;
+  UpdatePropertyBlocEvent({required this.model});
+}

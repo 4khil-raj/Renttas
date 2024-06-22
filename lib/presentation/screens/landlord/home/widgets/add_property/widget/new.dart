@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/application/add_property/addproperty_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
 import 'package:renttas/domain/models/add_property/models.dart';
+import 'package:renttas/domain/models/update_property/model.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_expense/widget/custom_cart_fields.dart';
@@ -11,14 +12,22 @@ import 'package:renttas/presentation/widgets/alerts/alerts.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
 class AddNewProperty extends StatelessWidget {
-  AddNewProperty({super.key});
+  AddNewProperty({this.editModel, required this.isEdit, super.key});
   final propertyNameController = TextEditingController();
   final subPropertyNameController = TextEditingController();
   final locationController = TextEditingController();
   final pincodeController = TextEditingController();
   bool request = false;
+  UpdatePropertyModel? editModel;
+  final bool isEdit;
   @override
   Widget build(BuildContext context) {
+    if (isEdit) {
+      propertyNameController.text = editModel!.propertyName;
+      subPropertyNameController.text = editModel!.subPropertyName;
+      locationController.text = editModel!.location;
+      pincodeController.text = editModel!.pin;
+    }
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
@@ -110,25 +119,31 @@ class AddNewProperty extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomButton(
-                      isNetwork: false,
-                      isRow: false,
-                      onTap: () {
-                        addProperty(context);
-                      },
-                      textclr: Colors.white,
-                      borderclr: contsGreen,
-                      color: contsGreen,
-                      fontweight: FontWeight.w500,
-                      name: 'Submit',
-                      height: 60,
-                      radius: 10,
-                      textsize: 16,
-                      width: double.infinity,
-                    ),
-                  )
+                  request
+                      ? CircularProgressIndicator(
+                          color: contsGreen,
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CustomButton(
+                            isNetwork: false,
+                            isRow: false,
+                            onTap: () {
+                              isEdit
+                                  ? updateProperty(context)
+                                  : addProperty(context);
+                            },
+                            textclr: Colors.white,
+                            borderclr: contsGreen,
+                            color: contsGreen,
+                            fontweight: FontWeight.w500,
+                            name: 'Submit',
+                            height: 60,
+                            radius: 10,
+                            textsize: 16,
+                            width: double.infinity,
+                          ),
+                        )
                 ])));
           },
         ));
@@ -142,5 +157,18 @@ class AddNewProperty extends StatelessWidget {
         pincode: pincodeController.text);
     BlocProvider.of<AddpropertyBloc>(context)
         .add(AddPropertyRequstEvent(model: model));
+  }
+
+  void updateProperty(context) {
+    UpdatePropertyModel model = UpdatePropertyModel(
+        landlordId: userModel!.uid,
+        propertyName: propertyNameController.text,
+        location: locationController.text,
+        propertyTypeId: editModel!.propertyTypeId,
+        subPropertyName: subPropertyNameController.text,
+        pin: pincodeController.text,
+        id: editModel!.id);
+    BlocProvider.of<AddpropertyBloc>(context)
+        .add(UpdatePropertyBlocEvent(model: model));
   }
 }

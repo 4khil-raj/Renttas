@@ -4,6 +4,7 @@ import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/electricity/widget/charges.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
+String electrycityBill = '';
 void electricityBillBottomSheet(context) {
   showModalBottomSheet(
       context: context,
@@ -53,7 +54,9 @@ void electricityBillBottomSheet(context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

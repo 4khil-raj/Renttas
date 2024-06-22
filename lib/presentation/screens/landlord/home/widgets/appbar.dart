@@ -2,17 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/presentation/screens/landlord/home/addroom.dart';
 import 'package:renttas/presentation/screens/landlord/home/profile/profile.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/add_property.dart';
-import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/property_builder.dart';
 import 'package:renttas/presentation/screens/landlord/premium/premium.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 dynamic selectedPropertyId;
+dynamic selectpropertyName;
 
 class TenantHomeScreenCustomAppBar extends StatelessWidget {
   const TenantHomeScreenCustomAppBar({super.key});
@@ -66,7 +67,12 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
                             PropertyselecterState>(
                           builder: (context, state) {
                             if (state is PropertySelectedState) {
+                              BlocProvider.of<PropertybillfetchBloc>(context)
+                                  .add(PropertyBillFetchEvent(
+                                      propertyId: currentPropertyId,
+                                      subpropertyId: currentSubpropertyId));
                               selectedPropertyId = state.id;
+                              selectpropertyName = state.selectedProperty;
                               return Text(state.selectedProperty,
                                   style: GoogleFonts.urbanist(
                                       fontWeight: FontWeight.w600,

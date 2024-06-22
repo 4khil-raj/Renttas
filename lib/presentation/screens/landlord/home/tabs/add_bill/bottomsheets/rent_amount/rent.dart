@@ -4,9 +4,9 @@ import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/rent_amount/widget/fields.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
+final rentAmountController = TextEditingController();
+final maintenanceAmountController = TextEditingController();
 void rentAmountBottomSheet(context) {
-  final rentAmountController = TextEditingController();
-  final maintenanceAmountController = TextEditingController();
   showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -70,7 +70,9 @@ void rentAmountBottomSheet(context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

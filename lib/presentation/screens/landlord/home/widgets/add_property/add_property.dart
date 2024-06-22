@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/newproperty_button.dart';
-import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/new.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/prepertes.dart';
-import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
-import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 bool propertyloading = false;
 void addPropertyBottomSheet(context) {

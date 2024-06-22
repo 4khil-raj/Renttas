@@ -4,7 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/fetch_property/model.dart';
+import 'package:renttas/domain/models/update_property/model.dart';
+import 'package:renttas/domain/models/user_model/model.dart';
+import 'package:renttas/infrastructure/repository/delete_property/repo.dart';
+import 'package:renttas/presentation/screens/landlord/home/widgets/add_property/widget/new.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/appbar.dart';
+import 'package:renttas/presentation/widgets/alerts/alerts.dart';
+import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 dynamic currectProperty;
 
@@ -27,11 +33,9 @@ class PropertyBuilderLandlord extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        print(state[index].propertyName);
-                        // currectProperty = widget.state[index].propertyName;
-                        // setState(() {});
                         BlocProvider.of<PropertyselecterBloc>(context).add(
                             PropertySelectEvent(
+                                subpropertyId: state[index].subpropertyId,
                                 property: state[index].propertyName,
                                 id: state[index].id));
                         Navigator.pop(context);
@@ -69,24 +73,43 @@ class PropertyBuilderLandlord extends StatelessWidget {
                     const SizedBox(
                       width: 12,
                     ),
-                    Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black45),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.amber,
-                            ))),
+                    InkWell(
+                      onTap: () {
+                        UpdatePropertyModel model = UpdatePropertyModel(
+                            landlordId: userModel!.uid,
+                            propertyName: state[index].propertyName,
+                            location: state[index].location,
+                            propertyTypeId: state[index].propertyTypeId,
+                            subPropertyName: state[index].subPrpertyName,
+                            pin: state[index].pin,
+                            id: state[index].id);
+
+                        customNavPush(
+                            context,
+                            AddNewProperty(
+                              editModel: model,
+                              isEdit: true,
+                            ));
+
+                        // print(state[index].id);
+                      },
+                      child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black45),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.amber,
+                              ))),
+                    ),
                     const SizedBox(
                       width: 8,
                     ),
                     InkWell(
-                      onTap: () {
-                        print(state[index].propertyTypeId);
-                      },
+                      onTap: () => deleteProperty(context, state[index].id),
                       child: Container(
                           height: 50,
                           decoration: BoxDecoration(
@@ -108,5 +131,14 @@ class PropertyBuilderLandlord extends StatelessWidget {
             );
           }),
     );
+  }
+
+  void deleteProperty(context, id) {
+    alertsWithButtons(context, 'Do you want to Detete..?', () {
+      DeletePropertyRepo.deleteProperty(id);
+      Navigator.pop(context);
+      BlocProvider.of<FetchpropertyBloc>(context)
+          .add(FetchPropertyreqEvent(uid: userModel!.uid));
+    }, "Delete Property");
   }
 }

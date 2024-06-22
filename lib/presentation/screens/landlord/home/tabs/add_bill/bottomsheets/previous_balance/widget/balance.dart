@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/previous_balance/previous_balance.dart';
 
+// dynamic previousBalnce = '';
+dynamic advanceAmount = '';
+
 class PreviousBalanceContainers extends StatefulWidget {
   const PreviousBalanceContainers(
       {required this.advanceAmountController, super.key});
@@ -135,7 +138,7 @@ class _PreviousBalanceContainersState extends State<PreviousBalanceContainers> {
           elevation: 0,
           child: TextField(
             keyboardType: TextInputType.number,
-            controller: widget.advanceAmountController,
+            controller: advanceAmountController,
             decoration: InputDecoration(
                 hintText: '  Advance Amount*',
                 border: InputBorder.none,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renttas/application/add_property/addproperty_bloc.dart';
+import 'package:renttas/application/addproperty_bill/addpropertybill_bloc.dart';
+import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
 import 'package:renttas/application/forgetpassword/forgetpassword_bloc.dart';
 import 'package:renttas/application/login_bloc/login_bloc.dart';
@@ -38,7 +40,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PropertyselecterBloc(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => AddpropertybillBloc(),
+        ),
+        BlocProvider(create: (context) => PropertybillfetchBloc())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

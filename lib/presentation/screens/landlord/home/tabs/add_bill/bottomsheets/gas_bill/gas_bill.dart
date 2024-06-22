@@ -53,7 +53,9 @@ void gasBillBottomSheet(context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

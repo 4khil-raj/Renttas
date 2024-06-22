@@ -20,7 +20,11 @@ class _NewPropertyButtonState extends State<NewPropertyButton> {
         : CustomButton(
             isNetwork: false,
             isRow: false,
-            onTap: () => customNavPush(context, AddNewProperty()),
+            onTap: () => customNavPush(
+                context,
+                AddNewProperty(
+                  isEdit: false,
+                )),
             textclr: Colors.white,
             borderclr: contsGreen,
             color: contsGreen,

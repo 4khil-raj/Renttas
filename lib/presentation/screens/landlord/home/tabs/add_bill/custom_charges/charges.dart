@@ -4,9 +4,9 @@ import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/custom_charges/widget/fields.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
+final waterbillController = TextEditingController();
+final valueController = TextEditingController();
 void customChargesBottomSheet(context) {
-  final waterbillController = TextEditingController();
-  final valueController = TextEditingController();
   showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -62,7 +62,9 @@ void customChargesBottomSheet(context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

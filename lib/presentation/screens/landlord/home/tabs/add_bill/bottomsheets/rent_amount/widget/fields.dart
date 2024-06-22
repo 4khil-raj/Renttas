@@ -47,7 +47,7 @@ class RentAmountCustomFields extends StatelessWidget {
               alignment: Alignment.center,
               child: TextField(
                 keyboardType: TextInputType.number,
-                controller: rentAmountController,
+                controller: maintenanceAmountcontroller,
                 decoration: InputDecoration(
                     hintText: '  Maintenance Amount*',
                     border: InputBorder.none,

@@ -3,11 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/rent_cycle/rent_cycle.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/addbutton.dart';
 
-class AddbillRentCycle extends StatelessWidget {
+String rentCycle = '';
+
+class AddbillRentCycle extends StatefulWidget {
   const AddbillRentCycle({super.key});
 
   @override
+  State<AddbillRentCycle> createState() => _AddbillRentCycleState();
+}
+
+class _AddbillRentCycleState extends State<AddbillRentCycle> {
+  @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(microseconds: 1), () {
+      setState(() {});
+    });
     return Column(
       children: [
         const SizedBox(
@@ -36,13 +46,19 @@ class AddbillRentCycle extends StatelessWidget {
                         fontSize: 15, fontWeight: FontWeight.w500),
                   ),
                   const Spacer(),
-                  CustomAddButton(
-                    containerWidth: 80,
-                    onTap: () {
-                      rentCycleBottomSheet(context);
-                    },
-                    text: 'Add',
-                  ),
+                  rentCycle.isEmpty
+                      ? CustomAddButton(
+                          containerWidth: 80,
+                          onTap: () {
+                            rentCycleBottomSheet(context);
+                          },
+                          text: 'Add',
+                        )
+                      : InkWell(
+                          onTap: () {
+                            rentCycleBottomSheet(context);
+                          },
+                          child: Text(rentCycle)),
                   const SizedBox(
                     width: 5,
                   )

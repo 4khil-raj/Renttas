@@ -5,6 +5,8 @@ sealed class AddpropertyState {}
 
 final class AddpropertyInitial extends AddpropertyState {}
 
+final class LoadingState extends AddpropertyState {}
+
 final class AddpropertyErrorState extends AddpropertyState {
   final String message;
 

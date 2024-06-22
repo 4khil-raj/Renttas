@@ -4,9 +4,9 @@ import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/previous_balance/widget/balance.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
-String? previousBalance;
+final advanceAmountController = TextEditingController();
+String previousBalance = '';
 void previoubillBottomSheet(context) {
-  final advanceAmountController = TextEditingController();
   showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -67,7 +67,9 @@ void previoubillBottomSheet(context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

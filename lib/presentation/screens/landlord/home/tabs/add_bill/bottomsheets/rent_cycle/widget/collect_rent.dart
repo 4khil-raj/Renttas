@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/rent_cycle/rent_cycle.dart';
+import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/rent_cycle.dart';
 
 class CollectRentCycle extends StatefulWidget {
   const CollectRentCycle({
@@ -38,6 +39,7 @@ class _CollectRentCycleState extends State<CollectRentCycle> {
             children: [
               InkWell(
                 onTap: () => setState(() {
+                  rentCycle = "Monthly";
                   collectRent = 'Monthly';
                   monthly = true;
                   quarterly = false;
@@ -70,6 +72,7 @@ class _CollectRentCycleState extends State<CollectRentCycle> {
               ),
               InkWell(
                 onTap: () => setState(() {
+                  rentCycle = "Quarterly";
                   collectRent = 'Quarterly';
                   quarterly = true;
                   monthly = false;
@@ -103,6 +106,7 @@ class _CollectRentCycleState extends State<CollectRentCycle> {
               InkWell(
                 onTap: () => setState(() {
                   collectRent = 'Half Yearly';
+                  rentCycle = "Half Yearly";
                   quarterly = false;
                   monthly = false;
                   halfyearly = true;
@@ -134,11 +138,10 @@ class _CollectRentCycleState extends State<CollectRentCycle> {
               ),
               InkWell(
                 onTap: () => setState(() {
+                  rentCycle = "Annually";
                   collectRent = 'Annually';
                   quarterly = false;
                   monthly = false;
-                  halfyearly = false;
-
                   annually = true;
                 }),
                 child: Container(

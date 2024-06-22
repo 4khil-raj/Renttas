@@ -4,11 +4,21 @@ import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottoms
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/bottomsheets/rent_amount/rent.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/addbutton.dart';
 
-class AddBillMonthlyChargesScreen extends StatelessWidget {
+class AddBillMonthlyChargesScreen extends StatefulWidget {
   const AddBillMonthlyChargesScreen({super.key});
 
   @override
+  State<AddBillMonthlyChargesScreen> createState() =>
+      _AddBillMonthlyChargesScreenState();
+}
+
+class _AddBillMonthlyChargesScreenState
+    extends State<AddBillMonthlyChargesScreen> {
+  @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(microseconds: 1), () {
+      setState(() {});
+    });
     return Padding(
       padding:
           const EdgeInsets.only(top: 13.0, left: 13, right: 13, bottom: 13),
@@ -44,11 +54,15 @@ class AddBillMonthlyChargesScreen extends StatelessWidget {
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      CustomAddButton(
-                        containerWidth: 80,
-                        onTap: () => previoubillBottomSheet(context),
-                        text: 'Add',
-                      ),
+                      previousBalance.isEmpty
+                          ? CustomAddButton(
+                              containerWidth: 80,
+                              onTap: () => previoubillBottomSheet(context),
+                              text: 'Add',
+                            )
+                          : InkWell(
+                              onTap: () => previoubillBottomSheet(context),
+                              child: Text(previousBalance)),
                       const SizedBox(
                         width: 5,
                       )
@@ -65,11 +79,15 @@ class AddBillMonthlyChargesScreen extends StatelessWidget {
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      CustomAddButton(
-                        containerWidth: 80,
-                        onTap: () => rentAmountBottomSheet(context),
-                        text: 'Add',
-                      ),
+                      rentAmountController.text.isEmpty
+                          ? CustomAddButton(
+                              containerWidth: 80,
+                              onTap: () => rentAmountBottomSheet(context),
+                              text: 'Add',
+                            )
+                          : InkWell(
+                              onTap: () => rentAmountBottomSheet(context),
+                              child: Text("Added")),
                       const SizedBox(
                         width: 5,
                       )

@@ -3,9 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/custom_charges/charges.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/addbutton.dart';
 
-class AddBillCustomChargesScreen extends StatelessWidget {
+class AddBillCustomChargesScreen extends StatefulWidget {
   const AddBillCustomChargesScreen({super.key});
 
+  @override
+  State<AddBillCustomChargesScreen> createState() =>
+      _AddBillCustomChargesScreenState();
+}
+
+class _AddBillCustomChargesScreenState
+    extends State<AddBillCustomChargesScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,11 +45,15 @@ class AddBillCustomChargesScreen extends StatelessWidget {
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                       const Spacer(),
-                      CustomAddButton(
-                        containerWidth: 80,
-                        onTap: () => customChargesBottomSheet(context),
-                        text: 'Add',
-                      ),
+                      waterbillController.text.isEmpty
+                          ? CustomAddButton(
+                              containerWidth: 80,
+                              onTap: () => customChargesBottomSheet(context),
+                              text: 'Add',
+                            )
+                          : InkWell(
+                              onTap: () => customChargesBottomSheet(context),
+                              child: Text('Addedd')),
                       const SizedBox(
                         width: 5,
                       )
