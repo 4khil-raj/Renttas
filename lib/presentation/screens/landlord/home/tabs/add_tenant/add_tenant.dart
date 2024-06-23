@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/application/add_tenant/addtenant_bloc.dart';
+import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
+import 'package:renttas/domain/models/add_tenant/model.dart';
+import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_expense/widget/custom_cart_fields.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_tenant/widget/dates.dart';
@@ -77,7 +82,7 @@ class AddTenantScreen extends StatelessWidget {
               CustomButton(
                 isNetwork: false,
                 isRow: false,
-                onTap: () {},
+                onTap: () => addTenant(context),
                 textclr: Colors.white,
                 borderclr: contsGreen,
                 color: contsGreen,
@@ -93,5 +98,23 @@ class AddTenantScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void addTenant(context) {
+    // AddTenantModel model = AddTenantModel(
+    //     propertyid: currentPropertyId,
+    //     subPropertyId: currentSubpropertyId,
+    //     tenantName: nameController.text,
+    //     tenantEmail: emailController.text,
+    //     advanceAmount: amountController.text,r
+    //     mobileNumber: addtenantphonenumberController.text,
+    //     startDate: addTenantstartDate.text,
+    //     endDate: addTenantendDate.text,
+    //     uid: userModel!.uid);
+    print(currentPropertyId);
+    print(currentSubpropertyId);
+
+    // BlocProvider.of<AddtenantBloc>(context)
+    //     .add(AddTenantRequstEvent(model: model));
   }
 }

@@ -25,20 +25,26 @@ class TenantAddBillScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: AddBillCustomFloatingButton(
         ontap: () {
+          // Ensure these variables are defined and initialized correctly
           AddPropertyBillModel model = AddPropertyBillModel(
-              electricityType: electrycityBill,
-              extraCharges: waterbillController.text,
-              gasBillType: gasBill,
-              landlordId: userModel!.uid,
-              maintananceAmount: maintenanceAmountController.text,
-              propertyId: currentPropertyId,
-              rentAmount: rentAmountController.text,
-              rentCycle: rentCycle,
-              waterbillType: waterbillController.text,
-              subpropertyId: currentSubpropertyId,
-              totalamount: "");
+            electricityType: electrycityBill,
+            extraCharges: waterbillController.text,
+            gasBillType: gasBill,
+            landlordId: userModel!.uid,
+            maintananceAmount: maintenanceAmountController.text,
+            propertyId: currentPropertyId,
+            rentAmount: rentAmountController.text,
+            rentCycle: rentCycle,
+            waterbillType: waterbillController.text,
+            subpropertyId: currentSubpropertyId,
+            totalamount: "",
+          );
+
+          // Dispatching the event to add a new bill
           BlocProvider.of<AddpropertybillBloc>(context)
               .add(AddBillRequestEvent(model: model));
+
+          // Clearing the input fields after the operation
           electrycityBill = '';
           waterbillController.clear();
           gasBill = '';
@@ -46,10 +52,16 @@ class TenantAddBillScreen extends StatelessWidget {
           rentAmountController.clear();
           rentCycle = '';
           waterbillController.clear();
+
+          // Fetching the updated property bills
           BlocProvider.of<PropertybillfetchBloc>(context).add(
-              PropertyBillFetchEvent(
-                  propertyId: currentPropertyId,
-                  subpropertyId: currentSubpropertyId));
+            PropertyBillFetchEvent(
+              propertyId: currentPropertyId,
+              subpropertyId: currentSubpropertyId,
+            ),
+          );
+
+          // Only pop once after everything is done
           Navigator.pop(context);
         },
       ),
@@ -59,7 +71,10 @@ class TenantAddBillScreen extends StatelessWidget {
         title: Text(
           'Add Bill',
           style: GoogleFonts.urbanist(
-              color: Colors.white, fontSize: 21, fontWeight: FontWeight.w600),
+            color: Colors.white,
+            fontSize: 21,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: contsGreen,
@@ -72,7 +87,7 @@ class TenantAddBillScreen extends StatelessWidget {
               AddbillRentCycle(),
               AddBillMonthlyChargesScreen(),
               AddBillOtherChargesScreen(),
-              AddBillCustomChargesScreen()
+              AddBillCustomChargesScreen(),
             ],
           ),
         ),

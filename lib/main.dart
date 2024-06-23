@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renttas/application/add_property/addproperty_bloc.dart';
+import 'package:renttas/application/add_tenant/addtenant_bloc.dart';
 import 'package:renttas/application/addproperty_bill/addpropertybill_bloc.dart';
 import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
@@ -20,7 +21,6 @@ Color contsGreen = const Color.fromARGB(255, 82, 144, 83);
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AddpropertybillBloc(),
         ),
-        BlocProvider(create: (context) => PropertybillfetchBloc())
+        BlocProvider(create: (context) => PropertybillfetchBloc()),
+        BlocProvider(create: (context) => AddtenantBloc())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
