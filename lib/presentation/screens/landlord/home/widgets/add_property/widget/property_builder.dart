@@ -35,6 +35,7 @@ class PropertyBuilderLandlord extends StatelessWidget {
                       onTap: () {
                         BlocProvider.of<PropertyselecterBloc>(context).add(
                             PropertySelectEvent(
+                                subPropertyName: state[index].subPrpertyName,
                                 subpropertyId: state[index].subpropertyId,
                                 property: state[index].propertyName,
                                 id: state[index].id));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/appbar.dart';
@@ -17,6 +18,10 @@ class PropertyBillBuilder extends StatelessWidget {
           child: ListView.builder(
             itemCount: state.billList.length,
             itemBuilder: (context, index) {
+              DateTime dateTime =
+                  DateTime.parse(state.billList[index].createdAt);
+              DateFormat formatter = DateFormat('dd MMM');
+              String formattedDate = formatter.format(dateTime);
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -39,7 +44,7 @@ class PropertyBillBuilder extends StatelessWidget {
                               child: SizedBox(
                                 width: 35,
                                 child: Text(
-                                  '08 Jun',
+                                  '$formattedDate',
                                   // state.billList[index].createdAt,
                                   style: GoogleFonts.inter(
                                     color: Colors.black54,
@@ -52,7 +57,7 @@ class PropertyBillBuilder extends StatelessWidget {
                             SizedBox(
                               width: 120,
                               child: Text(
-                                "$selectpropertyName",
+                                "$selectedSubPropertyName",
                                 style: GoogleFonts.inter(
                                   color: Colors.black87,
                                   fontSize: 18,
@@ -68,7 +73,7 @@ class PropertyBillBuilder extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  state.billList[index].rentAmount,
+                                  ' ₹ ${state.billList[index].rentAmount}',
                                   style: GoogleFonts.urbanist(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w700,
@@ -82,8 +87,7 @@ class PropertyBillBuilder extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  state.billList[index].gasBillCharge
-                                      .toString(),
+                                  " ₹ ${state.billList[index].totalAmount.toString()}",
                                   style: GoogleFonts.urbanist(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w700,

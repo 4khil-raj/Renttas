@@ -14,6 +14,7 @@ import 'package:renttas/presentation/widgets/navigators/navs.dart';
 
 dynamic selectedPropertyId;
 dynamic selectpropertyName;
+dynamic selectedSubPropertyName;
 
 class TenantHomeScreenCustomAppBar extends StatelessWidget {
   const TenantHomeScreenCustomAppBar({super.key});
@@ -73,6 +74,7 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
                                       subpropertyId: currentSubpropertyId));
                               selectedPropertyId = state.id;
                               selectpropertyName = state.selectedProperty;
+                              selectedSubPropertyName = state.subPropertyName;
                               return Text(state.selectedProperty,
                                   style: GoogleFonts.urbanist(
                                       fontWeight: FontWeight.w600,

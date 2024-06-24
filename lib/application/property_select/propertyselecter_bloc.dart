@@ -14,9 +14,11 @@ class PropertyselecterBloc
     on<PropertySelectEvent>((event, emit) {
       currentPropertyId = event.id;
       currentSubpropertyId = event.subpropertyId;
-      print(currentPropertyId);
+
       emit(PropertySelectedState(
-          selectedProperty: event.property, id: event.id));
+          subPropertyName: event.subPropertyName,
+          selectedProperty: event.property,
+          id: event.id));
     });
   }
 }
