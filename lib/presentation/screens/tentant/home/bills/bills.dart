@@ -41,8 +41,8 @@ class LatestBillTenant extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 120,
-                        child: Text('USERNAME-username',
+                        // width: 120,
+                        child: Text('USERNAME-',
                             style: GoogleFonts.inter(
                                 color: Colors.black87,
                                 fontSize: 18,
@@ -107,9 +107,9 @@ class LatestBillTenant extends StatelessWidget {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () => openWhatsAppChat('+918943514279'),
-                        child: Expanded(
+                      Expanded(
+                        child: InkWell(
+                          onTap: () => openWhatsAppChat('+918943514279'),
                           child: Container(
                             height: 50,
                             decoration: BoxDecoration(
@@ -130,10 +130,13 @@ class LatestBillTenant extends StatelessWidget {
                                   ),
                                 ),
 
-                                Text('WhatsApp',
-                                    style: GoogleFonts.urbanist(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700))
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 0.0),
+                                  child: Text('WhatsApp',
+                                      style: GoogleFonts.urbanist(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700)),
+                                )
                               ],
                             ),
                           ),
