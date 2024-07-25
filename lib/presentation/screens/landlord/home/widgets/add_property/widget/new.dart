@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/application/add_property/addproperty_bloc.dart';
+import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
+import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/add_property/models.dart';
 import 'package:renttas/domain/models/update_property/model.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
@@ -45,6 +47,10 @@ class AddNewProperty extends StatelessWidget {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 BlocProvider.of<FetchpropertyBloc>(context)
                     .add(FetchPropertyreqEvent(uid: userModel!.uid));
+                BlocProvider.of<PropertybillfetchBloc>(context).add(
+                    PropertyBillFetchEvent(
+                        propertyId: currentPropertyId,
+                        subpropertyId: currentSubpropertyId));
                 Navigator.pop(context);
                 BlocProvider.of<AddpropertyBloc>(context)
                     .add(AddpropertyEvent());

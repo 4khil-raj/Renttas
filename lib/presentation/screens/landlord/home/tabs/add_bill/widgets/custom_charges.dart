@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/custom_charges/charges.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/widgets/addbutton.dart';
+import 'package:renttas/presentation/screens/landlord/home/tabs/add_expense/widget/custom_cart_fields.dart';
+
+final mobileControllerForAddbill = TextEditingController();
 
 class AddBillCustomChargesScreen extends StatefulWidget {
   const AddBillCustomChargesScreen({super.key});
@@ -19,6 +23,19 @@ class _AddBillCustomChargesScreenState
       padding: const EdgeInsets.all(13.0),
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: AddExpenseFields(
+              keyboardType: TextInputType.phone,
+              controller: mobileControllerForAddbill,
+              hitText: 'Mobile',
+              icon: Icon(
+                Icons.phone,
+                color: contsGreen,
+              ),
+              name: '',
+            ),
+          ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -53,14 +70,17 @@ class _AddBillCustomChargesScreenState
                             )
                           : InkWell(
                               onTap: () => customChargesBottomSheet(context),
-                              child: Text('Addedd')),
+                              child: const Text('Addedd')),
                       const SizedBox(
                         width: 5,
                       )
-                    ])
+                    ]),
                   ],
                 ),
-              ))
+              )),
+          SizedBox(
+            height: 70,
+          )
         ],
       ),
     );

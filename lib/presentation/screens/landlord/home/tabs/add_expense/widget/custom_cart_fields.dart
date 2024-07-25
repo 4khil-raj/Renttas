@@ -23,17 +23,23 @@ class AddExpenseFields extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 6,
-        ),
-        Text(
-          name,
-          style:
-              GoogleFonts.urbanist(fontSize: 18, fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(
-          height: 6,
-        ),
+        name == ""
+            ? SizedBox()
+            : SizedBox(
+                height: 6,
+              ),
+        name == ""
+            ? SizedBox()
+            : Text(
+                name,
+                style: GoogleFonts.urbanist(
+                    fontSize: 18, fontWeight: FontWeight.w700),
+              ),
+        name == ""
+            ? SizedBox()
+            : SizedBox(
+                height: 6,
+              ),
         Card(
             color: Colors.pink[50],
             surfaceTintColor: Colors.pink[50],

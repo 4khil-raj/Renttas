@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/application/add_tenant/addtenant_bloc.dart';
 import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
+import 'package:renttas/application/fetch_expense/fetchexpense_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
@@ -68,6 +70,10 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
                             PropertyselecterState>(
                           builder: (context, state) {
                             if (state is PropertySelectedState) {
+                              BlocProvider.of<AddtenantBloc>(context)
+                                  .add(GetTenantEvent());
+                              BlocProvider.of<FetchexpenseBloc>(context)
+                                  .add(GetExepenseEvent());
                               BlocProvider.of<PropertybillfetchBloc>(context)
                                   .add(PropertyBillFetchEvent(
                                       propertyId: currentPropertyId,

@@ -8,3 +8,5 @@ class AddTenantRequstEvent extends AddtenantEvent {
 
   AddTenantRequstEvent({required this.model});
 }
+
+class GetTenantEvent extends AddtenantEvent {}

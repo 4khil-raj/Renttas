@@ -13,19 +13,21 @@ class AddPropertyBillModel {
   final String waterbillType;
   final String gasBillType;
   final String extraCharges;
-
-  AddPropertyBillModel(
-      {required this.landlordId,
-      required this.propertyId,
-      required this.subpropertyId,
-      required this.rentCycle,
-      required this.rentAmount,
-      required this.maintananceAmount,
-      required this.totalamount,
-      required this.electricityType,
-      required this.waterbillType,
-      required this.gasBillType,
-      required this.extraCharges});
+  final String mobilenum;
+  AddPropertyBillModel({
+    required this.landlordId,
+    required this.propertyId,
+    required this.subpropertyId,
+    required this.rentCycle,
+    required this.rentAmount,
+    required this.maintananceAmount,
+    required this.totalamount,
+    required this.electricityType,
+    required this.waterbillType,
+    required this.gasBillType,
+    required this.extraCharges,
+    required this.mobilenum,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -40,6 +42,7 @@ class AddPropertyBillModel {
       'waterbillType': waterbillType,
       'gasBillType': gasBillType,
       'extraCharges': extraCharges,
+      'mobilenum': mobilenum,
     };
   }
 
@@ -56,6 +59,7 @@ class AddPropertyBillModel {
       waterbillType: map['waterbillType'] as String,
       gasBillType: map['gasBillType'] as String,
       extraCharges: map['extraCharges'] as String,
+      mobilenum: map['mobilenum'] as String,
     );
   }
 

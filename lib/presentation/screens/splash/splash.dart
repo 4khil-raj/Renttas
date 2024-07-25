@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
-import 'package:renttas/infrastructure/repository/getTenant/repo.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/home.dart';
 import 'package:renttas/presentation/screens/onboarding/onboarding.dart';
@@ -13,8 +12,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GetTenantRepo.getTenantReq("5aef9a22-11c8-4058-9a31-cd8b5aac6ffa",
-        "7dfdded0-a221-4ddc-9177-8ec0a4faee17");
+    //
     getUserModel();
     Future.delayed(const Duration(seconds: 2), () {
       checkUserLogin(context);

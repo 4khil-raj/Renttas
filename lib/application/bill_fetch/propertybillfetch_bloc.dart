@@ -14,12 +14,15 @@ class PropertybillfetchBloc
     });
 
     on<PropertyBillFetchEvent>((event, emit) async {
+      print("ivite ethi aleena");
       try {
         final resposne = await FetchBillRepo.billFetch(
             event.propertyId, event.subpropertyId);
         if (resposne.isEmpty) {
           emit(EmptyState());
+          print("something happend");
         } else {
+          print(resposne[0].mobileNumber);
           emit(BillLoadedSucussState(billList: resposne));
         }
       } catch (e) {

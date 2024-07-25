@@ -5,6 +5,7 @@ import 'package:renttas/application/add_tenant/addtenant_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/add_tenant/model.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
+import 'package:renttas/infrastructure/updateTenant/repo.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_expense/widget/custom_cart_fields.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_tenant/widget/dates.dart';
@@ -16,22 +17,33 @@ final addTenantstartDate = TextEditingController();
 final addTenantendDate = TextEditingController();
 
 class AddTenantScreen extends StatelessWidget {
-  AddTenantScreen({super.key});
+  AddTenantScreen({super.key, this.model, required this.isEdit});
+  AddTenantModel? model;
+  bool isEdit;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
 
   final amountController = TextEditingController();
   dynamic startDate;
   dynamic endDate;
+
   @override
   Widget build(BuildContext context) {
+    if (isEdit) {
+      nameController.text = model!.tenantName;
+      emailController.text = model!.tenantEmail;
+      addtenantphonenumberController.text = model!.mobileNumber;
+      amountController.text = model!.advanceAmount;
+      addTenantstartDate.text = model!.startDate;
+      addTenantendDate.text = model!.endDate;
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: contsGreen,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         title: Text(
-          'Add Tenant',
+          isEdit ? "Edit Tenant" : 'Add Tenant',
           style: GoogleFonts.poppins(
               fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
         ),
@@ -82,12 +94,14 @@ class AddTenantScreen extends StatelessWidget {
               CustomButton(
                 isNetwork: false,
                 isRow: false,
-                onTap: () => addTenant(context),
+                onTap: () => isEdit
+                    ? updateTenant(context, model!.uid)
+                    : addTenant(context),
                 textclr: Colors.white,
                 borderclr: contsGreen,
                 color: contsGreen,
                 fontweight: FontWeight.w500,
-                name: 'Submit',
+                name: isEdit ? "Update" : 'Submit',
                 height: 50,
                 radius: 10,
                 textsize: 16,
@@ -100,21 +114,36 @@ class AddTenantScreen extends StatelessWidget {
     );
   }
 
-  void addTenant(context) {
-    // AddTenantModel model = AddTenantModel(
-    //     propertyid: currentPropertyId,
-    //     subPropertyId: currentSubpropertyId,
-    //     tenantName: nameController.text,
-    //     tenantEmail: emailController.text,
-    //     advanceAmount: amountController.text,r
-    //     mobileNumber: addtenantphonenumberController.text,
-    //     startDate: addTenantstartDate.text,
-    //     endDate: addTenantendDate.text,
-    //     uid: userModel!.uid);
-    print(currentPropertyId);
-    print(currentSubpropertyId);
+  void updateTenant(context, String id) {
+    AddTenantModel model = AddTenantModel(
+        propertyid: currentPropertyId,
+        subPropertyId: currentSubpropertyId,
+        tenantName: nameController.text,
+        tenantEmail: emailController.text,
+        advanceAmount: amountController.text,
+        mobileNumber: addtenantphonenumberController.text,
+        startDate: addTenantstartDate.text,
+        endDate: addTenantendDate.text,
+        uid: userModel!.uid);
+    UpdateTenantRepo.updateTenant(model, id, context);
+  }
 
-    // BlocProvider.of<AddtenantBloc>(context)
-    //     .add(AddTenantRequstEvent(model: model));
+  void addTenant(context) {
+    AddTenantModel model = AddTenantModel(
+        propertyid: currentPropertyId,
+        subPropertyId: currentSubpropertyId,
+        tenantName: nameController.text,
+        tenantEmail: emailController.text,
+        advanceAmount: amountController.text,
+        mobileNumber: addtenantphonenumberController.text,
+        startDate: addTenantstartDate.text,
+        endDate: addTenantendDate.text,
+        uid: userModel!.uid);
+    // print(currentPropertyId);
+    // print(currentSubpropertyId);
+    Navigator.pop(context);
+
+    BlocProvider.of<AddtenantBloc>(context)
+        .add(AddTenantRequstEvent(model: model));
   }
 }

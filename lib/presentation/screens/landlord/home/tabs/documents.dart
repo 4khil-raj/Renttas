@@ -13,7 +13,7 @@ class HomeDocumentsTab extends StatelessWidget {
         text: 'Doucments',
         onTap: () => customNavPush(context, const AddDocumentsScreen()),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Doucments Not found!'),
       ),
     );

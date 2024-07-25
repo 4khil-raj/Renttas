@@ -17,13 +17,15 @@ class AddPropertyBillLandlordRepo {
       "electricityType": model.electricityType,
       "waterBillType": model.waterbillType,
       "gasBillType": model.gasBillType,
-      "extraCharge": model.extraCharges
+      "extraCharge": model.extraCharges,
+      "mobileNumber": [model.mobilenum],
     };
     print(addRequst);
     try {
       final response = await http.post(Uri.parse(Api.addPropertyBill),
           body: jsonEncode(addRequst));
       final responseBody = jsonDecode(response.body);
+      print(responseBody);
 
       if (response.statusCode == 200) {
         return true;

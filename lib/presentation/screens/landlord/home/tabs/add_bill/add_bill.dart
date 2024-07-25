@@ -27,6 +27,7 @@ class TenantAddBillScreen extends StatelessWidget {
         ontap: () {
           // Ensure these variables are defined and initialized correctly
           AddPropertyBillModel model = AddPropertyBillModel(
+            mobilenum: mobileControllerForAddbill.text,
             electricityType: electrycityBill,
             extraCharges: waterbillController.text,
             gasBillType: gasBill,
@@ -47,6 +48,7 @@ class TenantAddBillScreen extends StatelessWidget {
           // Clearing the input fields after the operation
           electrycityBill = '';
           waterbillController.clear();
+          mobileControllerForAddbill.clear();
           gasBill = '';
           maintenanceAmountController.clear();
           rentAmountController.clear();

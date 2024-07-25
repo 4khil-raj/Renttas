@@ -1,7 +1,9 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
+import 'package:renttas/domain/models/addExpense/model.dart';
+import 'package:renttas/domain/models/user_model/model.dart';
+import 'package:renttas/infrastructure/repository/addExpense/repo.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_expense/widget/fields.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
@@ -47,7 +49,18 @@ class AddExpenseScreen extends StatelessWidget {
               CustomButton(
                 isNetwork: false,
                 isRow: false,
-                onTap: () {},
+                onTap: () {
+                  AddExpenseModel model = AddExpenseModel(
+                      uid: userModel!.uid,
+                      subPropertyId: currentSubpropertyId,
+                      propertyID: currentPropertyId,
+                      name: nameController.text,
+                      expensesDate: expenseDate.text,
+                      description: descriptionController.text,
+                      category: categoryController.text,
+                      amount: amountController.text);
+                  AddExpenseRepo.addExpense(model, context);
+                },
                 textclr: Colors.white,
                 borderclr: contsGreen,
                 color: contsGreen,

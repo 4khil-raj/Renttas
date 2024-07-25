@@ -17,10 +17,8 @@ class AddpropertybillBloc
 
     on<AddBillRequestEvent>((event, emit) async {
       try {
-        print("ivita");
         final response =
             await AddPropertyBillLandlordRepo.addPropertyBill(event.model);
-        print(response);
 
         if (response && response != '') {
           emit(AddpropertySuccessState());
