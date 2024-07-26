@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/infrastructure/repository/add_address/repo.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/about/widget/property.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
@@ -43,7 +44,7 @@ void propertyAddressSheet(BuildContext context) {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Add Address',
+                                          'Add Details',
                                           style: GoogleFonts.urbanist(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20),
@@ -62,7 +63,9 @@ void propertyAddressSheet(BuildContext context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () {
+                                            print('triggerd');
+                                          },
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

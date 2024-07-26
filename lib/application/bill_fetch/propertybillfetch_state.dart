@@ -17,3 +17,5 @@ final class BillLoadedSucussState extends PropertybillfetchState {
   final List<PropertyBillFetchModel> billList;
   BillLoadedSucussState({required this.billList});
 }
+
+final class BillLoadingState extends PropertybillfetchState {}

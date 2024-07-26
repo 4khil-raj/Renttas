@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:renttas/infrastructure/repository/add_address/repo.dart';
 import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/about/widget/owner.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
@@ -62,7 +63,14 @@ void ownerAddressSheet(BuildContext context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {},
+                                          onTap: () =>
+                                              AddAddressRepo.addAddress(
+                                                  context: context,
+                                                  address:
+                                                      ownerAddressController
+                                                          .text,
+                                                  pincode:
+                                                      pincodeController.text),
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

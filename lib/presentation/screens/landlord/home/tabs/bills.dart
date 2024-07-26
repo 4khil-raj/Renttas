@@ -2,14 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
-import 'package:renttas/main.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/add_bill/add_bill.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/bill_builder.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/widgets/floating_button.dart';
-import 'package:renttas/presentation/screens/landlord/home/widgets/appbar.dart';
 import 'package:renttas/presentation/widgets/navigators/navs.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeBillTab extends StatelessWidget {
   const HomeBillTab({super.key});
@@ -30,9 +28,16 @@ class HomeBillTab extends StatelessWidget {
             return Center(
               child: Text('Bill Not found'),
             );
+          } else if (state is BillLoadingState) {
+            return Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                color: Color.fromARGB(255, 0, 0, 0),
+                size: 40,
+              ),
+            );
           }
           return Center(
-            child: Text('Bill Not found!'),
+            child: Text('No Property Selected'),
           );
         },
       ),
