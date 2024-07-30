@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:renttas/application/image_picker/imagepicker_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/create_document/model.dart';
@@ -23,7 +24,7 @@ class AddDocumentsScreen extends StatefulWidget {
 class _AddDocumentsScreenState extends State<AddDocumentsScreen> {
   final descriptionController = TextEditingController();
   final documentnameController = TextEditingController();
-  String? selectedImage;
+  XFile? selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,7 @@ class _AddDocumentsScreenState extends State<AddDocumentsScreen> {
                       child: BlocBuilder<ImagepickerBloc, ImagepickerState>(
                         builder: (context, state) {
                           if (state is ImageCameraSuccess) {
-                            selectedImage = state.image.path;
+                            selectedImage = state.image;
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
@@ -100,13 +101,14 @@ class _AddDocumentsScreenState extends State<AddDocumentsScreen> {
                 isRow: false,
                 onTap: () {
                   CreateDocument model = CreateDocument(
-                      file: selectedImage.toString(),
+                      dec: descriptionController.text,
+                      file: selectedImage!,
                       docName: documentnameController.text,
                       propertyID: currentPropertyId,
                       subPropertyId: currentSubpropertyId,
                       mobileNum: '');
-                  print(model.subPropertyId);
-                  CreateDocumentRepo.createDocument(model);
+                  UploadDocumentRepository()
+                      .uploadFile(model: model, context: context);
                 },
                 textclr: Colors.white,
                 borderclr: contsGreen,

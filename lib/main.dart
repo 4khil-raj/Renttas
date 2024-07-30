@@ -8,6 +8,7 @@ import 'package:renttas/application/fetch_address/fetchaddress_bloc.dart';
 import 'package:renttas/application/fetch_expense/fetchexpense_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
 import 'package:renttas/application/forgetpassword/forgetpassword_bloc.dart';
+import 'package:renttas/application/get_document/getdocument_bloc.dart';
 import 'package:renttas/application/image_picker/imagepicker_bloc.dart';
 import 'package:renttas/application/login_bloc/login_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AddtenantBloc()),
         BlocProvider(create: (context) => FetchexpenseBloc()),
         BlocProvider(create: (context) => ImagepickerBloc()),
-        BlocProvider(create: (context) => FetchaddressBloc())
+        BlocProvider(create: (context) => FetchaddressBloc()),
+        BlocProvider(create: (context) => GetdocumentBloc())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

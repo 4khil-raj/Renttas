@@ -7,6 +7,7 @@ import 'package:renttas/application/bill_fetch/propertybillfetch_bloc.dart';
 import 'package:renttas/application/fetch_address/fetchaddress_bloc.dart';
 import 'package:renttas/application/fetch_expense/fetchexpense_bloc.dart';
 import 'package:renttas/application/fetch_property/fetchproperty_bloc.dart';
+import 'package:renttas/application/get_document/getdocument_bloc.dart';
 import 'package:renttas/application/property_select/propertyselecter_bloc.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/presentation/screens/landlord/home/addroom.dart';
@@ -84,6 +85,8 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
                                       subpropertyId: currentSubpropertyId));
                               BlocProvider.of<FetchaddressBloc>(context)
                                   .add(FetchAddressReq());
+                              BlocProvider.of<GetdocumentBloc>(context)
+                                  .add(GetDocEvent());
 
                               return Text(state.selectedProperty,
                                   style: GoogleFonts.urbanist(
