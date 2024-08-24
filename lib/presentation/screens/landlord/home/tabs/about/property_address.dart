@@ -63,9 +63,7 @@ void propertyAddressSheet(BuildContext context) {
                                         CustomButton(
                                           isNetwork: false,
                                           isRow: false,
-                                          onTap: () {
-                                            print('triggerd');
-                                          },
+                                          onTap: () {},
                                           textclr: Colors.white,
                                           borderclr: contsGreen,
                                           color: contsGreen,

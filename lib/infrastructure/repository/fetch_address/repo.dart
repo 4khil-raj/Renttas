@@ -5,35 +5,22 @@ import 'package:renttas/core/api/apis.dart';
 import 'package:renttas/domain/models/fetch_address/model.dart';
 
 class AddressRepository {
-  Future<List<FetchAddressModel>> fetchAddresses() async {
+  fetchAddresses() async {
+    List<FetchAddressModel> addressList = [];
     Map<String, dynamic> req = {
-      "selectedPropertyId": "",
-      "selectedSubPropertyId": ""
+      "selectedPropertyId": currentPropertyId,
+      "selectedSubPropertyId": currentSubpropertyId
     };
     final response = await http.post(
       Uri.parse(Api.getAddressDetails),
       body: jsonEncode(req),
-      headers: {
-        'Content-Type': 'application/json'
-      }, // Adding headers if required
+      headers: {'Content-Type': 'application/json'},
     );
-    print("++++++++++++++++++++++++++++=======");
-    print(response.body);
-    print("++++++++++++++++++++++++++++=======");
-    print(currentPropertyId);
-    print(currentSubpropertyId);
-
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      print(jsonResponse);
-      if (jsonResponse['data'] != null) {
-        final List<dynamic> data = jsonResponse['data'];
-        return data.map((json) => FetchAddressModel.fromJson(json)).toList();
-      } else {
-        return []; // Return an empty list if data is null
-      }
+      return jsonResponse;
     } else {
-      throw Exception('Failed to load addresses');
+      throw Exception('Faild to load');
     }
   }
 }

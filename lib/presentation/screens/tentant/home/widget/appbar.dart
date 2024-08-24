@@ -22,7 +22,8 @@ class TenantappBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String initials = userModel != null ? _getInitials(userModel!.name) : '';
+    String initials =
+        userModel != null ? _getInitials(userModel?.name ?? 'USER NAME') : '';
     // getUserModel();
     return AppBar(
       backgroundColor: contsGreen,

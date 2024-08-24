@@ -37,7 +37,8 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String initials = userModel != null ? _getInitials(userModel!.name) : '';
+    String initials =
+        userModel != null ? _getInitials(userModel?.name ?? '') : '';
     return Container(
       height: 150,
       color: const Color.fromARGB(255, 82, 144, 83),
@@ -60,7 +61,7 @@ class TenantHomeScreenCustomAppBar extends StatelessWidget {
               InkWell(
                 onTap: () {
                   BlocProvider.of<FetchpropertyBloc>(context)
-                      .add(FetchPropertyreqEvent(uid: userModel!.uid));
+                      .add(FetchPropertyreqEvent(uid: userModel?.uid ?? ''));
                   addPropertyBottomSheet(context);
                 },
                 child: Row(

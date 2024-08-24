@@ -91,8 +91,6 @@ class PropertyBuilderLandlord extends StatelessWidget {
                               editModel: model,
                               isEdit: true,
                             ));
-
-                        // print(state[index].id);
                       },
                       child: Container(
                           height: 50,

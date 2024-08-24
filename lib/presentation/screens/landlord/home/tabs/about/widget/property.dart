@@ -50,7 +50,6 @@ class _PropertyAddressAddScreenFieldsState
         });
       } else {
         // Handle case where picked file is null
-        print('Picked file is null');
       }
     } else {
       // User canceled the picker or no file was picked

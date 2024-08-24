@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:renttas/domain/models/user_model/model.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/about/owner_address.dart';
 import 'package:renttas/presentation/screens/landlord/home/tabs/about/property_address.dart';
+import 'package:renttas/presentation/screens/landlord/home/tabs/address_details.dart';
 import 'package:renttas/presentation/screens/landlord/home/widgets/appbar.dart';
 import 'package:renttas/presentation/widgets/buttons/custom_button.dart';
 
@@ -168,9 +169,7 @@ class HomeAboutTab extends StatelessWidget {
                   SizedBox(
                       height: 400,
                       child: TabBarView(children: [
-                        Center(
-                          child: Text("No Address Found"),
-                        ),
+                        AddressDetailsScreen(),
                         Center(
                           child: Text("No Details Found"),
                         )

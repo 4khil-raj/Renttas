@@ -28,8 +28,7 @@ class FetchExpenseRepo {
         throw Exception('Failed to load expenses');
       }
     } catch (e) {
-      print(e);
-      return [];
+      throw Exception(e.toString());
     }
   }
 }

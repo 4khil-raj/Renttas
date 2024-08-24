@@ -31,11 +31,9 @@ class GetTenantRepo {
         } else {}
         return tenantList;
       } else {
-        print('Failed to load tenants: Status code ${response.statusCode}');
         throw Exception('Failed to load tenants');
       }
     } catch (e) {
-      print('Exception caught: $e');
       throw Exception('Failed to load tenants');
     }
   }

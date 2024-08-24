@@ -26,7 +26,6 @@ class AddpropertybillBloc
           emit(ErrorState(message: 'Try Again!'));
         }
       } catch (e) {
-        print(e.toString());
         emit(ErrorState(message: "some error Occuer $e"));
       }
     });

@@ -16,8 +16,6 @@ class FetchBillRepo {
         Uri.parse(Api.propertyBillFetch),
         body: json.encode(request),
       );
-      final respose = jsonDecode(response.body);
-      print(respose);
       if (response.statusCode == 200) {
         final responseBody = json.decode(response.body);
         if (responseBody['statuscode'] == 200 && responseBody["data"] is List) {

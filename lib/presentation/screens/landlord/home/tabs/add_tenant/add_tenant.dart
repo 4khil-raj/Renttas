@@ -139,8 +139,7 @@ class AddTenantScreen extends StatelessWidget {
         startDate: addTenantstartDate.text,
         endDate: addTenantendDate.text,
         uid: userModel!.uid);
-    // print(currentPropertyId);
-    // print(currentSubpropertyId);
+
     Navigator.pop(context);
 
     BlocProvider.of<AddtenantBloc>(context)

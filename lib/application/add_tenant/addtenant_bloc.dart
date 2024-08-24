@@ -23,7 +23,7 @@ class AddtenantBloc extends Bloc<AddtenantEvent, AddtenantState> {
           emit(TenantAddErrorState(message: "Some error occurs"));
         }
       } catch (e) {
-        print(e);
+        throw Exception(e);
       }
     });
 

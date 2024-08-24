@@ -23,18 +23,15 @@ class GetDocumentLandlord {
 
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
-        print(responseBody);
 
         if (responseBody['data'] != null) {
-          print("==============741596");
           list = GetDocumentModel.fromJsonList(responseBody['data']);
         }
       } else {
-        print(
-            'Failed to fetch documents with status code: ${response.statusCode}');
+        throw Exception('try again');
       }
     } catch (e) {
-      print('Error occurred: $e');
+      throw Exception(e.toString());
     }
 
     return list;

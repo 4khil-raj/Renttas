@@ -20,12 +20,9 @@ class AddPropertyBillLandlordRepo {
       "extraCharge": model.extraCharges,
       "mobileNumber": [model.mobilenum],
     };
-    print(addRequst);
     try {
       final response = await http.post(Uri.parse(Api.addPropertyBill),
           body: jsonEncode(addRequst));
-      final responseBody = jsonDecode(response.body);
-      print(responseBody);
 
       if (response.statusCode == 200) {
         return true;
@@ -33,7 +30,7 @@ class AddPropertyBillLandlordRepo {
         return false;
       }
     } catch (e) {
-      return "something went wrong $e";
+      throw Exception(e.toString());
     }
   }
 }

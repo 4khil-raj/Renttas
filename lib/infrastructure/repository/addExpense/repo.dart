@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renttas/application/fetch_expense/fetchexpense_bloc.dart';
 import 'package:renttas/core/api/apis.dart';
 import 'package:renttas/domain/models/addExpense/model.dart';
 import "package:http/http.dart" as http;
@@ -29,7 +31,7 @@ class AddExpenseRepo {
 
       if (response.statusCode == 200) {
         Navigator.pop(context);
-        FetchExpenseRepo.fetchExpense();
+        BlocProvider.of<FetchexpenseBloc>(context).add(GetExepenseEvent());
       } else {
         alerts(context, "Try again!");
       }

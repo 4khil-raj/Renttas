@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renttas/application/get_tenant_bill/get_tenant_bill_bloc.dart';
 import 'package:renttas/presentation/screens/tentant/home/about/about.dart';
 import 'package:renttas/presentation/screens/tentant/home/bills/bills.dart';
 import 'package:renttas/presentation/screens/tentant/home/documents/documents.dart';
@@ -11,11 +13,11 @@ class TenantWelcomeHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    BlocProvider.of<GetTenantBillBloc>(context).add(FetchRequest());
+    return const Scaffold(
       appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 60),
-          child: TenantappBar()),
-      body: const DefaultTabController(
+          preferredSize: Size(double.infinity, 60), child: TenantappBar()),
+      body: DefaultTabController(
         length: 3,
         initialIndex: 0,
         child: Column(

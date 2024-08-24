@@ -14,7 +14,6 @@ class FetchexpenseBloc extends Bloc<FetchexpenseEvent, FetchexpenseState> {
 
     on<GetExepenseEvent>((event, emit) async {
       final response = await FetchExpenseRepo.fetchExpense();
-      print(response[0].name);
       emit(FetchExpenseSuccessState(list: response));
     });
   }

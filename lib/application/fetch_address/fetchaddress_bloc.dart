@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:renttas/domain/models/fetch_address/model.dart';
@@ -16,21 +14,13 @@ class FetchaddressBloc extends Bloc<FetchaddressEvent, FetchaddressState> {
 
     on<FetchAddressReq>((event, emit) async {
       emit(Loading());
-      print("==============================================ivite eehhi");
       try {
         final response = await AddressRepository().fetchAddresses();
-        if (response.isNotEmpty) {
-          print(response[0].pincode);
-          print("==============================================ivite eehhi");
-          emit(FetchSuccessState(list: response));
-        } else {
-          print("ntho problem ond");
-          emit(FetchaddressInitial());
-        }
+
+        emit(FetchSuccessState(
+            address: response['data']['address'],
+            pincode: response['data']['pincode']));
       } catch (e) {
-        print(
-            "=====================ffffff=========================ivite eehhi${e.toString()}");
-        log(e.toString());
         emit(ErrorStateFetchAddress(msg: e.toString()));
       }
     });
